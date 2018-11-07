@@ -1,8 +1,17 @@
 require 'open-uri'
-url, filename = ARGV[0], ARGV[1]
+File.open("list.txt", "r+t"){|f|
+ f.each_line{|neko|
+   urls = neko.split[0]
+#     puts urls
+   titles = neko.split[1]
+#     puts titles
+ open(urls) do |file|
 
-open(url) do |file|
-  open(filename, "w+b") do |out|
-    out.write(file.read)
-  end
-end
+   open(titles, "w+b") do |out|
+
+     out.write(file.read)
+
+   end
+end 
+  }
+}
